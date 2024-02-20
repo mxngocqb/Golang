@@ -6,11 +6,13 @@ import (
 	"fmt"
 )
 
+// create struct of Store
 type Store struct {
 	*Queries
 	db *sql.DB
 }
 
+// Create new Sotre
 func NewStore(db *sql.DB) *Store {
 	return &Store{
 		db:      db,
@@ -77,7 +79,20 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (Trans
 		if err != nil {
 			return err
 		}
+		
+		account2, err := q.GetAccount(ctx, arg.ToAccountID)
+		if err != nil {
+			return err
+		}
 
+		result.ToAccount, err = q.UpdateAccount(ctx, UpdateAccountParams{
+			ID: arg.ToAccountID,
+			Balance: account2.Balance+arg.Amount,
+		})
+
+		if err != nil {
+			return err
+		}
 		return nil
 	})
 
