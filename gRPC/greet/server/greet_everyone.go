@@ -4,7 +4,7 @@ import (
 	"io"
 	"log"
 
-	pb "github.com/Clement-Jean/grpc-go-course/greet/proto"
+	pb "github.com/mxngocqb/Golang/gRPC/greet/proto"
 )
 
 func (s *Server) GreetEveryone(stream pb.GreetService_GreetEveryoneServer) error {
