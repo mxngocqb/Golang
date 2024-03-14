@@ -1,0 +1,14 @@
+[Cache]
+addr = "127.0.0.1:6379"
+password = ""
+
+[DB]
+server = "127.0.0.1"
+port = "3306"
+username = "root"
+password = "mauFJcuf5dhRMQrjj"
+db_name = "products_test"
+table_name = "products"
+
+[Server]
+port = "8000"
