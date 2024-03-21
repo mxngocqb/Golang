@@ -1,0 +1,30 @@
+Least square solution to calculate the user position given the navigation message, pseudorange
+and accumulated delta range measurements. Also calculates user velocity non-iteratively from
+Least square position solution.
+
+<p>The method fills the user position and velocity in ECEF coordinates and receiver clock
+offset in meters and clock offset rate in meters per second.
+
+<p>One can choose between no smoothing, using the carrier phase measurements (accumulated delta
+range) or the doppler measurements (pseudorange rate) for smoothing the pseudorange. The
+smoothing is applied only if time has changed below a specific threshold since last invocation.
+
+<p>Source for least squares:
+
+<ul>
+  <li>http://www.u-blox.com/images/downloads/Product_Docs/GPS_Compendium%28GPS-X-02007%29.pdf
+      page 81 - 85
+  <li>Parkinson, B.W., Spilker Jr., J.J.: ‘Global positioning system: theory and applications’
+      page 412 - 414
+</ul>
+
+<p>Sources for smoothing pseudorange with carrier phase measurements:
+
+<ul>
+  <li>Satellite Communications and Navigation Systems book, page 424,
+  <li>Principles of GNSS, Inertial, and Multisensor Integrated Navigation Systems, page 388,
+      389.
+</ul>
+
+<p>The function does not modify the smoothed measurement list {@code
+immutableSmoothedSatellitesToReceiverMeasurements}
